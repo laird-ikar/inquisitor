@@ -4,16 +4,19 @@ services:
     image: debian
     networks:
       - midgard
+    tty: true
   target:
     container_name: target
     image: debian
     networks:
       - midgard
+    tty: true
   poisoner:
     container_name: poisoner
     image: debian
     networks:
       - midgard
+    tty: true
 
 networks:
   midgard:
