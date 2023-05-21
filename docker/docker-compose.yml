@@ -1,0 +1,20 @@
+services:
+  source:
+    container_name: source
+    image: debian
+    networks:
+      - midgard
+  target:
+    container_name: target
+    image: debian
+    networks:
+      - midgard
+  poisoner:
+    container_name: poisoner
+    image: debian
+    networks:
+      - midgard
+
+networks:
+  midgard:
+    driver: bridge
