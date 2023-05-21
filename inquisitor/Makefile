@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 09:56:44 by bguyot            #+#    #+#              #
-#    Updated: 2023/05/21 10:02:23 by bguyot           ###   ########.fr        #
+#    Updated: 2023/05/21 12:35:37 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ INCS		=	$(addsuffix .hpp, $(addprefix $(INCS_FOLD), $(INCS_FILE)))
 OBJS		=	$(SRCS:.cpp=.o)
 
 CC			=	c++
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-lpcap
 RM			=	rm -f
 
 all:			$(NAME)
