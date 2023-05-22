@@ -13,11 +13,26 @@ services:
     tty: true
   poisoner:
     container_name: poisoner
-    image: debian
+    build:
+      context: .
+      dockerfile: poisoner.dockerfile
     networks:
       - midgard
     tty: true
 
 networks:
   midgard:
-    driver: bridge
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+          - subnet: "192.168.0.0/29" # public wifi at mc donalds
+            gateway: "192.168.0.1"
+            aux_addresses:
+              target: "192.168.0.2"
+              poisoner: "192.168.0.3"
+          - subnet: "192.168.0.8/29" # distant ftp server with top secret files
+            gateway: "192.168.0.9"
+            aux_addresses:
+              source: "192.168.0.10"

@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 09:56:44 by bguyot            #+#    #+#              #
-#    Updated: 2023/05/21 12:35:37 by bguyot           ###   ########.fr        #
+#    Updated: 2023/05/21 16:55:52 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ RM			=	rm -f
 all:			$(NAME)
 
 $(NAME):		$(OBJS) $(CLASS_OBJS) $(INCS)
-				$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+				$(CC) $(OBJS) -o $(NAME) $(CFLAGS)
 
 .cpp.o:
-				$(CC) $(CFLAGS) -c $< -o $@
+				$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
 				$(RM) $(OBJS)
