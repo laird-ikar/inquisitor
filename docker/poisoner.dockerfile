@@ -8,7 +8,9 @@ RUN apt-get update && apt-get install -y	\
 	build-essential							\
 	libpcap-dev
 
-RUN make -C /inquisitor_source
+RUN make -C /inquisitor_source re
+
+ENV PATH=$PATH:/inquisitor_source
 
 # Run bash
 CMD ["/bin/bash"]

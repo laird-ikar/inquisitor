@@ -1,38 +1,32 @@
 services:
-  source:
-    container_name: source
-    image: debian
-    networks:
-      - midgard
-    tty: true
-  target:
+  target: #victim
     container_name: target
-    image: debian
+    build:
+      context: .
+      dockerfile: target.dockerfile
     networks:
-      - midgard
+      - hyrule
     tty: true
-  poisoner:
+
+  poisoner: #attacker
     container_name: poisoner
     build:
       context: .
       dockerfile: poisoner.dockerfile
     networks:
-      - midgard
+      - hyrule
+    tty: true
+
+  source: #distant ftp server
+    container_name: source
+    build:
+      context: .
+      dockerfile: source.dockerfile
+    networks:
+      - hyrule
+    ports: 
+      - "21:21"
     tty: true
 
 networks:
-  midgard:
-    driver: macvlan
-    driver_opts:
-      parent: eth0
-    ipam:
-      config:
-          - subnet: "192.168.0.0/29" # public wifi at mc donalds
-            gateway: "192.168.0.1"
-            aux_addresses:
-              target: "192.168.0.2"
-              poisoner: "192.168.0.3"
-          - subnet: "192.168.0.8/29" # distant ftp server with top secret files
-            gateway: "192.168.0.9"
-            aux_addresses:
-              source: "192.168.0.10"
+  hyrule:
