@@ -1,6 +1,6 @@
 FROM 'debian'
 
-RUN apt-get update && apt-get install -y vsftpd
+RUN apt-get update && apt-get install -y vsftpd net-tools
 
 COPY vsftpd.conf /etc/vsftpd.conf
 

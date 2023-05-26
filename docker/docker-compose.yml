@@ -1,32 +1,47 @@
+version: "3.4"
+
 services:
   target: #victim
+    hostname: target
     container_name: target
     build:
       context: .
-      dockerfile: target.dockerfile
-    networks:
-      - hyrule
+      dockerfile: ./target.dockerfile
+    mac_address: 00:00:00:00:00:01
     tty: true
+    networks:
+      hyrule:
+        ipv4_address: 10.10.0.101
 
   poisoner: #attacker
+    hostname: poisoner
     container_name: poisoner
     build:
       context: .
-      dockerfile: poisoner.dockerfile
-    networks:
-      - hyrule
+      dockerfile: ./poisoner.dockerfile
+    mac_address: 00:00:00:00:00:03
     tty: true
+    cap_add:
+      - ALL
+    networks:
+      hyrule:
+        ipv4_address: 10.10.0.103
 
   source: #distant ftp server
+    hostname: source
     container_name: source
     build:
       context: .
-      dockerfile: source.dockerfile
-    networks:
-      - hyrule
-    ports: 
-      - "21:21"
+      dockerfile: ./source.dockerfile
+    mac_address: 00:00:00:00:00:04
     tty: true
+    networks:
+      hyrule:
+        ipv4_address: 10.10.0.104    
 
 networks:
   hyrule:
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.10.0.0/24
