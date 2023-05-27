@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 10:13:25 by bguyot            #+#    #+#              #
-#    Updated: 2023/05/23 17:15:41 by bguyot           ###   ########.fr        #
+#    Updated: 2023/05/26 18:16:19 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,9 @@ build: docker
 
 down: docker
 	docker compose -f docker/docker-compose.yml down
+
+stop: docker
+	docker compose -f docker/docker-compose.yml stop
 
 re: down up
 

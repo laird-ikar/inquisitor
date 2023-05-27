@@ -3,6 +3,7 @@ version: "3.4"
 services:
   target: #victim
     hostname: target
+    privileged: true
     container_name: target
     build:
       context: .
@@ -15,6 +16,7 @@ services:
 
   poisoner: #attacker
     hostname: poisoner
+    privileged: true
     container_name: poisoner
     build:
       context: .
@@ -29,6 +31,7 @@ services:
 
   source: #distant ftp server
     hostname: source
+    privileged: true
     container_name: source
     build:
       context: .
