@@ -20,13 +20,14 @@ RUN apt-get update && apt-get install -y arping
 RUN rm -f /arpspoof_capture.pcap && touch /arpspoof_capture.pcap
 
 # Copy the poisoner source
-COPY ./inquisitor /usr/bin/
+# COPY ./inquisitor /usr/bin/
+COPY inquisitor_source /inquisitor_source
 
-# RUN make -C /inquisitor_source re
+RUN make -C /inquisitor_source re
 
-RUN chmod +x /usr/bin/inquisitor
+# RUN chmod +x /usr/bin/inquisitor
 
-# ENV PATH=$PATH:/inquisitor_source
+ENV PATH=$PATH:/inquisitor_source
 
 # Run bash
 CMD ["/bin/bash"]

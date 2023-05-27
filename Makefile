@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 10:13:25 by bguyot            #+#    #+#              #
-#    Updated: 2023/05/26 18:16:19 by bguyot           ###   ########.fr        #
+#    Updated: 2023/05/27 11:21:51 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ up: build
 	docker compose -f docker/docker-compose.yml up -d
 
 attached: build
-	docker compose -f docker/docker-compose.yml up --build
+	docker compose -f docker/docker-compose.yml up
 
 build: docker
 	docker compose -f docker/docker-compose.yml build
